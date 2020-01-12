@@ -183,9 +183,11 @@ func main() {
 		fmt.Println("error opening session,", err)
 		return
 	}
-
-	// Block until TERM signal received
 	fmt.Println("Started bot")
+
+	// Start the reddit watcher
 	startReddit(dg, &conf)
+
+	// Open a channel
 	<-make(chan struct{})
 }
