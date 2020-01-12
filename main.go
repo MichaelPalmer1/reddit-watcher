@@ -58,11 +58,6 @@ func (r *screenzBot) Post(post *reddit.Post) error {
 
 			// Only post if the channel name matches the subreddit name
 			if channel.Name == post.Subreddit {
-				// Build the image
-				image := discordgo.MessageEmbedImage{
-					URL: post.URL,
-				}
-
 				// Build the author
 				author := discordgo.MessageEmbedAuthor{
 					Name: post.Author,
@@ -76,11 +71,21 @@ func (r *screenzBot) Post(post *reddit.Post) error {
 				// Build the embed
 				embed := discordgo.MessageEmbed{
 					Title:       post.Title,
-					URL:         "https://reddit.com" + post.Permalink,
-					Image:       &image,
 					Author:      &author,
 					Footer:      &footer,
 					Description: post.SelfText,
+				}
+
+				// Check if this is a self post
+				if post.IsSelf {
+					embed.URL = post.URL
+				} else {
+					// Build the image
+					image := discordgo.MessageEmbedImage{
+						URL: post.URL,
+					}
+					embed.Image = &image
+					embed.URL = "https://reddit.com" + post.Permalink
 				}
 
 				// Build the message
