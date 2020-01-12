@@ -101,7 +101,7 @@ func (r *screenzBot) Post(post *reddit.Post) error {
 		}
 	}
 
-	fmt.Printf("%s posted \"%s\" in %s\n", post.Author, post.Title, post.Subreddit)
+	fmt.Printf("%s posted \"%s\" in r/%s\n", post.Author, post.Title, post.Subreddit)
 	return nil
 }
 
