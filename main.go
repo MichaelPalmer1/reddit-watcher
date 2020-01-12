@@ -19,7 +19,7 @@ func main() {
 	flag.Parse()
 
 	// Start the discord bot
-	session := discordbot.StartDiscord(&conf, "Stalking reddit")
+	session := discordbot.StartDiscord(&conf)
 	if session == nil {
 		fmt.Println("Error starting discord bot")
 		return

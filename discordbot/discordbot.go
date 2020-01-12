@@ -8,7 +8,7 @@ import (
 )
 
 // StartDiscord - starts the discord bot
-func StartDiscord(conf *config.Config, status string) *discordgo.Session {
+func StartDiscord(conf *config.Config) *discordgo.Session {
 	// Create discord session
 	session, err := discordgo.New("Bot " + conf.Token)
 	if err != nil {
@@ -19,7 +19,7 @@ func StartDiscord(conf *config.Config, status string) *discordgo.Session {
 	// Register handler
 	session.AddHandler(messageCreate)
 	session.AddHandler(func(discord *discordgo.Session, ready *discordgo.Ready) {
-		discord.UpdateStatus(0, status)
+		discord.UserUpdateStatus(discordgo.StatusOnline)
 		guilds := discord.State.Guilds
 		fmt.Println("Ready with", len(guilds), "guilds.")
 	})
