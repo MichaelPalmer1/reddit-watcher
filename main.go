@@ -15,7 +15,7 @@ func main() {
 	flag.StringVar(&conf.Token, "token", "", "Bot token")
 	flag.StringVar(&conf.RedditAppID, "app-id", "", "Reddit app id")
 	flag.StringVar(&conf.RedditAppSecret, "app-secret", "", "Reddit app secret")
-	flag.StringVar(&conf.Subreddits, "subreddits", "funny,homelab,homelabsales,hardwareswap,memes", "Subreddits to watch")
+	flag.StringVar(&conf.Subreddits, "subreddits", "homelab,homelabsales,hardwareswap", "Subreddits to watch")
 	flag.Parse()
 
 	// Start the discord bot
